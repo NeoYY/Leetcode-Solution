@@ -1,4 +1,4 @@
-#The count-and-say sequence is the sequence of integers with the first five terms as following:#
+/*#The count-and-say sequence is the sequence of integers with the first five terms as following:#
 
 1.     1
 2.     11
@@ -14,7 +14,7 @@ Given an integer n where 1 ≤ n ≤ 30, generate the nth term of the count-and-
 Note: Each term of the sequence of integers will be represented as a string.
 
 **Basically, the next output the the count of the previous input**
-*Belowed are the code*
+*Belowed are the code*/
 
 class Solution {
 public:
