@@ -56,16 +56,12 @@ public:
             }
         }
         //ensure it is not overflow, if not, return 
-        if( count == 0 ) return digits;
         //if overflow, add one digit at the end
         //only possible case is like [1,0,0,0]
         //so set the first one 1, and others 0
-        digits.push_back( 0 );
-        digits[0] = 1;
-        for( int i = 1; i <= size; ++i )
-        {
-            digits[i] = 0;
-        }
+        if (count) {
+            digits.insert(digits.begin(), count);
+        } 
         return digits;
     }
 };
