@@ -59,8 +59,9 @@ public:
         //if overflow, add one digit at the end
         //only possible case is like [1,0,0,0]
         //so set the first one 1, and others 0
-        if (count) {
-            digits.insert(digits.begin(), count);
+        if ( count ) 
+        {
+            digits.insert( digits.begin(), count );
         } 
         return digits;
     }
