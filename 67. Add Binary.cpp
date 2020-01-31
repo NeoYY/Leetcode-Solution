@@ -119,3 +119,32 @@ public:
         return res;
     }
 };
+
+
+//solution 2, convert the char to int to solve the situation that the length of two input is different
+//when converted, "100001" + "10" will be considered as 100001 + 000010;
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        int size_a = a.length() - 1;
+        int size_b = b.length() - 1;
+        //carry bit
+        int cb = 0;
+        string res = "";
+        //use int instead of char
+        int temp1 = 0;
+        int temp2 = 0;
+        //loop end when all digits are added
+        while ( size_a >=0 || size_b >= 0 )
+        {
+            // '0' || '1' - '0' will be integer 1 or 0
+            temp1 = ( size_a >= 0 )? a[size_a--] - '0' : 0;
+            temp2 = ( size_b >= 0 )? b[size_b--] - '0' : 0;
+            // 3 % 2 will be 1
+            // 2,3 / 2 will be 1
+            res = to_string( ( temp1 + temp2 + cb ) % 2 ) + res;
+            cb = ( ( temp1 + temp2 + cb ) / 2 );            
+        }
+        return cb == 1 ? '1' + res : res;
+    }
+};
