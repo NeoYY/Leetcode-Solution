@@ -1,0 +1,78 @@
+/*
+You are climbing a stair case. It takes n steps to reach to the top.
+
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+Note: Given n will be a positive integer.
+
+Can be considered as Fibonacci sequence, count[n] = count[n-1] + count[n-1]
+Use dp, think the current state is the sum of two previous states
+
+1 method, O(n), O(n)
+2 method, O(n), O(n)
+3 method, O(n), O(1)
+
+Same idea, second one use recursion, third one use in-place
+
+Below are codes */
+
+
+//Method 1
+class Solution {
+public:
+    int climbStairs(int n) {
+    //Initialize a vector that contain n+1 elements( includes 0 )
+        vector<int> count( n + 1, 0 );
+        //0 is 1 because 0 step is one choice
+        count[0] = 1;
+        count[1] = 1;
+        for ( int i = 2; i <= n; ++i )
+        {
+            count[i] = count[i-1] + count[i-2];
+        }
+        return count[n];
+    }
+};
+
+//Method 2
+class Solution {
+public:
+    int climbStairs(int n) 
+    {
+    //Be sure the define of count is right
+        count = vector<int>( n + 1, 0 );
+        return cS_h( n );
+    }
+private:
+    int cS_h( int n )
+    {
+        if ( n <= 1 ) {return 1;}
+        //Need to store the value if the value is calculated, or it will cause infinite loop
+        if ( count[n] > 0 ) {return count[n];}
+        count[n] = cS_h( n - 1 ) + cS_h( n - 2 );
+        return count[n];
+    }
+    vector<int> count;
+};
+
+
+//Method 3
+class Solution
+{
+public:
+    int climbStairs ( int n )
+    {
+        int first = 1;
+        int second = 1;
+        //0,1 will not go into for loop, so return 1
+        int cur = 1;
+        for ( int i = 2; i <= n; ++i )
+        {
+            cur = first + second;
+            first = second;
+            second = cur;
+        }
+        return cur;
+    }
+};
+        
