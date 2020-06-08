@@ -53,6 +53,7 @@ public:
         {
             depth++;
             width = q.size();
+            //width is used to clear all nodes in one layer
             for ( int i = 0; i < width; i++ )
             {
                 temp = q.front();
