@@ -27,7 +27,7 @@ class Solution {
 public:
     vector<int> sortArray(vector<int>& nums) 
     {
-        Merge_Sort( nums, 0, nums.size() - 1 );
+        Quick_Sort( nums, 0, nums.size() - 1 );
         return nums;
     }
     void Merge_Sort( vector<int>& nums, int start, int end )
@@ -55,5 +55,38 @@ public:
         {
             nums[start++] = temp[j];
         }
+    }
+    void Quick_Sort( vector<int>& nums, int low, int high )
+    {
+        if ( low >= high ) return;
+        int pa = Partition( nums, low, high );
+        Quick_Sort( nums, low, pa - 1 );
+        Quick_Sort( nums, pa + 1, high );
+    }
+    void Find_Mid( vector<int>& nums, int low, int high )
+    {
+        int i = low;
+        int j = high;
+        int k = low + ( high - low ) / 2;
+        if ( nums[i] > nums[k] ) swap( nums[i], nums[k] );
+        if ( nums[i] > nums[j] ) swap( nums[j], nums[j] );
+        if ( nums[k] > nums[j] ) swap( nums[k], nums[j] );
+        swap( nums[k], nums[j] );
+    }
+    int Partition( vector<int>& nums, int low, int high )
+    {
+        Find_Mid( nums, low, high );
+        int l = low;
+        int h = high;
+        int temp = nums[high];
+        while ( l != h )
+        {
+            while ( nums[l] <= temp && l < h ) l++;
+            while ( nums[h] >= temp && l < h ) h--;
+            if ( l < h ) swap( nums[l], nums[h] );
+        }
+        nums[high] = nums[l];
+        nums[l] = temp;
+        return l;
     }
 };
