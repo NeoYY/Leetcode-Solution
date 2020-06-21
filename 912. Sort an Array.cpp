@@ -2,7 +2,7 @@
 
 Given an array of integers nums, sort the array in ascending order.
 
- 
+
 
 Example 1:
 
@@ -12,7 +12,7 @@ Example 2:
 
 Input: nums = [5,1,1,2,0,0]
 Output: [0,0,1,1,2,5]
- 
+
 
 Constraints:
 
@@ -25,7 +25,7 @@ Solution one is merge sort, Second is quick sort
 
 class Solution {
 public:
-    vector<int> sortArray(vector<int>& nums) 
+    vector<int> sortArray(vector<int>& nums)
     {
         Quick_Sort( nums, 0, nums.size() - 1 );
         return nums;
@@ -89,4 +89,24 @@ public:
         nums[l] = temp;
         return l;
     }
+
+    //Another Verison of Partition
+    /*
+    int Partition ( vector<int>& nums, int l, int r )
+{
+    int left = l, right = r - 1, temp = nums[r];
+    while ( left != right )
+    {
+        while ( nums[left] <= temp && left < right ) left++;
+        while ( nums[right] >= temp && left < right ) right--;
+        if ( left < right ) swap( nums[right], nums[left] );
+    }
+    if ( nums[left] >= nums[r] )
+    {
+        swap( nums[left], nums[r] );
+        return left;
+    }
+        return r;
+    }
+*/
 };
